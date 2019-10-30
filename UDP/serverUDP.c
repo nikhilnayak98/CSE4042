@@ -3,6 +3,7 @@ Name: Nikhil Ranjan Nayak
 Regd no: 1641012040
 Desc: server UDP
 */
+
 #include <stdio.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -49,7 +50,7 @@ int main(int argc, char *argv[])
     */
     serv_addr.sin_family = AF_INET;
     //serv_addr.sin_port = htons(7891);
-    serv_addr.sin_port = htons(atoi(argv[2]));
+    serv_addr.sin_port = htons(atoi(argv[1]));
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     //serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     //memset(serv_addr.sin_zero, '\0', sizeof serv_addr.sin_zero);  
@@ -67,7 +68,7 @@ int main(int argc, char *argv[])
     //printf("SErver started");
 
     //listen(sockfd,5);
-    clilen = sizeof cli_addr;
+    clilen = sizeof(cli_addr);
     while(1)
     {
 
@@ -85,9 +86,10 @@ int main(int argc, char *argv[])
         /* If connection is established then start communicating */
         bzero(buffer, 256);
         // n = read( newsockfd,buffer,255 );
-        nBytes = recvfrom(sockfd, buffer, 256, 0, (struct sockaddr * ) & cli_addr, & clilen);
-
-        /*if(n < 0)
+        
+        nBytes = recvfrom(sockfd, buffer, 256, 0, (struct sockaddr *) &cli_addr, &clilen);
+		
+		/*if(n < 0)
         {
            error("ERROR reading from socket");
            //exit(1);
@@ -97,7 +99,7 @@ int main(int argc, char *argv[])
 
         /* Write a response to the client */
         //n = write(newsockfd,"I got your message",18);
-        //sendto(sockfd,buffer,255,0, (struct sockaddr *) &cli_addr, clilen);
+        n = sendto(sockfd,buffer,255,0, (struct sockaddr *) &cli_addr, clilen);
         if(n < 0)
         {
             error("ERROR writing to socket");

@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
 	serv_addr.sin_addr.s_addr=inet_addr(argv[1]);
 	memset(serv_addr.sin_zero, '\0', sizeof serv_addr.sin_zero); */
 	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_port = htons(7891);
-	//serv_addr.sin_port = htons(atoi(argv[2]));
+	//serv_addr.sin_port = htons(7891);
+	serv_addr.sin_port = htons(atoi(argv[2]));
 	//serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 	serv_addr.sin_addr.s_addr = INADDR_ANY;
 	//memset(serv_addr.sin_zero, '\0', sizeof serv_addr.sin_zero);  
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 	/* Now ask for a message from the user, this message
 	* will be read by server
 	*/
-	serlen = sizeof serv_addr;
+	serlen = sizeof(serv_addr);
 	printf("Please enter the message: ");
 	bzero(buffer, 256);
 	fgets(buffer, 255, stdin);
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 	/* Now read server response */
 	bzero(buffer, 256);
 	//n = read(sockfd, buffer, 255);
-	// recvfrom(sockfd,buffer,255,0,(struct sockaddr *) &serv_addr, &serlen);
+	n = recvfrom(sockfd,buffer,255,0,(struct sockaddr *) &serv_addr, &serlen);
 	if(n < 0)
 	{
 		error("ERROR reading from socket");
