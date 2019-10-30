@@ -1,3 +1,9 @@
+/*
+Name: Nikhil Ranjan Nayak
+Regd no: 1641012040
+Desc: debit card server
+*/
+
 #include <unistd.h> 
 #include <stdio.h> 
 #include <sys/socket.h> 
