@@ -1,3 +1,9 @@
+/*
+Name: Nikhil Ranjan Nayak
+Regd no: 1641012040
+Desc: client.c
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
